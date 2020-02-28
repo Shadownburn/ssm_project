@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qianfeng.dao.BusinessinfoDao">
+
+    <!--##开辟该账户的商家信息-->
+    <insert id="insertBusinessInfo" parameterType="int">
+        INSERT into businessinfo (business_id) VALUES (#{business_id});
+    </insert>
+
+
+    <!--##检查用户是否被冻结-->
+    <select id="selectBusinessInfoById" parameterType="int" resultType="int">
+        SELECT business_status FROM businessinfo where  business_id = #{business_id};
+    </select>
+
+    <!--获得所有商家信息-->
+    <select id="getBusinessAll" resultType="com.qianfeng.pojo.BusinessUserAndUsername">
+        select b.business_id,i.business_username , b.business_status
+        from  Businessinfo b,Business i
+        where b.business_id = i.business_id
+    </select>
+
+    <!--冻结商户-->
+
+
+</mapper>
